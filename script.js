@@ -1,3 +1,5 @@
+
+
 const contentData = [
 
   {
@@ -53,21 +55,21 @@ const contentData = [
   },
 
   {
-    id: "dogs",
-    icon: "fa-dog",
-    title: "BASIC. BUT DISCERNING.",
-    lines: [
-      "I love dogs. Yes, I am basic like that.",
-      "They get excited about small wins.",
-      "They commit immediately.",
-      "They do not overthink.",
-      "Not big on pouncing felines",
-      "(If you know what I mean.)",
-      "Too much lurking.",
-      "Too much plotting.",
-      "I respect enthusiasm."
-    ]
-  },
+  id: "dogs",
+  icon: "fa-dog",
+  title: "BASIC. BUT DISCERNING.",
+  lines: [
+    "I love dogs. Yes, I am basic like that.",
+    "They get excited about small wins.",
+    "They commit immediately.",
+    "They do not overthink.",
+    "Not big on pouncing felines",
+    "(If you know what I mean.)",
+    "Too much lurking.",
+    "Too much plotting.",
+    "I respect enthusiasm."
+  ]
+},
 
   {
     id: "planner",
@@ -121,54 +123,15 @@ const contentData = [
   },
 
   {
-    id: "challenge",
-    icon: "fa-bolt",
-    title: "",
+    id: "final",
+    icon: "fa-flag-checkered",
+    title: "LET’S BUILD",
     lines: [
-      "If you’re looking for safe,",
-      "you probably already have 200 options.",
-      "",
-      "If you’re looking for sharp,",
-      "slightly unconventional,",
-      "commercially serious but culturally awake -",
-      "",
-      "Why not me."
-    ]
-  },
-
-  {
-    id: "decision",
-    type: "decision"
-  },
-
-  {
-    id: "yesOutcome",
-    icon: "fa-check",
-    title: "Good choice.",
-    lines: [
-      "Well obviously.",
-      "You seem like someone who recognises upside early.",
-      "",
-      "Let’s build something",
-      "that moves product",
-      "and moves culture."
+      "Let’s build something people line up for.",
+      "The kind that moves inventory.",
+      "And moves conversations."
     ],
     contact: true
-  },
-
-  {
-    id: "noOutcome",
-    icon: "fa-eye",
-    title: "Fair.",
-    lines: [
-      "Safe is comfortable.",
-      "This product will be a bestseller somewhere else.",
-      "",
-      "And when you see it everywhere,",
-      "you’ll remember this page.",
-      "",
-      "No hard feelings."
-    ]
   }
 
 ];
@@ -182,35 +145,6 @@ function renderSection() {
 
   content.innerHTML = "";
   const section = contentData[currentIndex];
-
-  // Decision screen
-  if (section.type === "decision") {
-
-    const title = document.createElement("div");
-    title.className = "highlight";
-    title.innerText = "Want to hire?";
-    content.appendChild(title);
-
-    const wrapper = document.createElement("div");
-    wrapper.className = "decision-buttons";
-
-    const yes = document.createElement("button");
-    yes.innerText = "Yes";
-    yes.onclick = () => goTo("yesOutcome");
-
-    const no = document.createElement("button");
-    no.innerText = "No";
-    no.onclick = () => goTo("noOutcome");
-
-    wrapper.appendChild(yes);
-    wrapper.appendChild(no);
-
-    content.appendChild(wrapper);
-
-    backBtn.style.visibility = "visible";
-    nextBtn.style.visibility = "hidden";
-    return;
-  }
 
   addIcon(section.icon);
   addTitle(section.title);
@@ -299,9 +233,64 @@ function renderSection() {
   nextBtn.style.visibility = currentIndex === contentData.length - 1 ? "hidden" : "visible";
 }
 
-function goTo(id) {
-  currentIndex = contentData.findIndex(s => s.id === id);
-  renderSection();
+function addIcon(iconClass) {
+  const icon = document.createElement("div");
+  icon.className = "top-icon";
+  icon.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+  content.appendChild(icon);
+}
+
+function addTitle(text) {
+  const title = document.createElement("div");
+  title.className = "section-title";
+  title.innerText = text;
+  content.appendChild(title);
+}
+
+function addLine(text, extraClass = "") {
+  const line = document.createElement("div");
+  line.className = `line ${extraClass}`;
+  line.innerText = text;
+  content.appendChild(line);
+}
+
+function addHTMLLine(html, extraClass = "") {
+  const line = document.createElement("div");
+  line.className = `line ${extraClass}`;
+  line.innerHTML = html;
+  content.appendChild(line);
+}
+
+function addHighlight(text, extraClass = "") {
+  const highlight = document.createElement("div");
+  highlight.className = `highlight ${extraClass}`;
+  highlight.innerText = text;
+  content.appendChild(highlight);
+}
+
+function addGrid(items) {
+
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  items.forEach((item, index) => {
+
+    const box = document.createElement("div");
+    box.className = "grid-box";
+
+    if (items.length % 2 !== 0 && index === items.length - 1) {
+      box.classList.add("full-width");
+    }
+
+    box.innerHTML = `
+      <div class="icon-wrap"><i class="fa-solid ${item.icon}"></i></div>
+      <div class="text-wrap">${item.text}</div>
+    `;
+
+    grid.appendChild(box);
+  });
+
+  content.appendChild(grid);
 }
 
 nextBtn.onclick = () => {
