@@ -53,21 +53,21 @@ const contentData = [
   },
 
   {
-  id: "dogs",
-  icon: "fa-dog",
-  title: "BASIC. BUT DISCERNING.",
-  lines: [
-    "I love dogs. Yes, I am basic like that.",
-    "They get excited about small wins.",
-    "They commit immediately.",
-    "They do not overthink.",
-    "Not big on pouncing felines",
-    "(If you know what I mean.)",
-    "Too much lurking.",
-    "Too much plotting.",
-    "I respect enthusiasm."
-  ]
-},
+    id: "dogs",
+    icon: "fa-dog",
+    title: "BASIC. BUT DISCERNING.",
+    lines: [
+      "I love dogs. Yes, I am basic like that.",
+      "They get excited about small wins.",
+      "They commit immediately.",
+      "They do not overthink.",
+      "Not big on pouncing felines",
+      "(If you know what I mean.)",
+      "Too much lurking.",
+      "Too much plotting.",
+      "I respect enthusiasm."
+    ]
+  },
 
   {
     id: "planner",
@@ -120,16 +120,61 @@ const contentData = [
     ]
   },
 
+  // 🔥 NEW SLIDE (after manifesto3)
+
   {
-    id: "final",
-    icon: "fa-flag-checkered",
-    title: "LET’S BUILD",
+    id: "challenge",
+    icon: "fa-bolt",
+    title: "",
     lines: [
-      "Let’s build something people line up for.",
-      "The kind that moves inventory.",
-      "And moves conversations."
+      "If you’re looking for safe,",
+      "you probably already have 200 options.",
+      "",
+      "If you’re looking for sharp,",
+      "slightly unconventional,",
+      "commercially serious but culturally awake —",
+      "",
+      "Why not me."
+    ]
+  },
+
+  // 🔥 DECISION SLIDE
+
+  {
+    id: "decision",
+    type: "decision"
+  },
+
+  // 🔥 YES OUTCOME
+
+  {
+    id: "yesOutcome",
+    title: "Good choice.",
+    lines: [
+      "Well obviously.",
+      "You seem like someone who recognises upside early.",
+      "",
+      "Let’s build something",
+      "that moves product",
+      "and moves culture."
     ],
     contact: true
+  },
+
+  // 🔥 NO OUTCOME
+
+  {
+    id: "noOutcome",
+    title: "Fair.",
+    lines: [
+      "Safe is comfortable.",
+      "This product will be a bestseller somewhere else.",
+      "",
+      "And when you see it everywhere,",
+      "you’ll remember this page.",
+      "",
+      "No hard feelings."
+    ]
   }
 
 ];
@@ -143,6 +188,35 @@ function renderSection() {
 
   content.innerHTML = "";
   const section = contentData[currentIndex];
+
+  // 🔥 Decision logic
+  if (section.type === "decision") {
+
+    const title = document.createElement("div");
+    title.className = "highlight";
+    title.innerText = "Want to hire?";
+    content.appendChild(title);
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "decision-buttons";
+
+    const yes = document.createElement("button");
+    yes.innerText = "Yes";
+    yes.onclick = () => goTo("yesOutcome");
+
+    const no = document.createElement("button");
+    no.innerText = "No";
+    no.onclick = () => goTo("noOutcome");
+
+    wrapper.appendChild(yes);
+    wrapper.appendChild(no);
+
+    content.appendChild(wrapper);
+
+    nextBtn.style.visibility = "hidden";
+    backBtn.style.visibility = "visible";
+    return;
+  }
 
   addIcon(section.icon);
   addTitle(section.title);
@@ -163,22 +237,17 @@ function renderSection() {
   }
 
   else if (section.type === "tech") {
-
     addLine("Doomscrolling.", "tech-small");
     addLine("UPI.", "tech-small");
     addLine("Add to cart.", "tech-small");
     addLine("Checkout.", "tech-small");
-
     addLine("And yet here I am building this website from scratch.", "tech-pause");
     addLine("Why?");
-
     addHTMLLine("<strong>Just</strong> because I can <strong>do</strong> <strong>it</strong>", "tech-strong");
     addHTMLLine("Struggle, but still, <strong>do it</strong>", "tech-strong");
-
     addLine("Initiative > comfort zones.", "tech-reflect");
     addLine("Also, if we’re being honest", "tech-reflect");
     addLine("knowing how people browse, hesitate, compare, abandon and finally checkout", "tech-reflect");
-
     addHighlight("is half the job.", "tech-final");
   }
 
@@ -228,67 +297,12 @@ function renderSection() {
   }
 
   backBtn.style.visibility = currentIndex === 0 ? "hidden" : "visible";
-  nextBtn.style.visibility = currentIndex === contentData.length - 1 ? "hidden" : "visible";
+  nextBtn.style.visibility = currentIndex === contentData.length - 3 ? "hidden" : "visible";
 }
 
-function addIcon(iconClass) {
-  const icon = document.createElement("div");
-  icon.className = "top-icon";
-  icon.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
-  content.appendChild(icon);
-}
-
-function addTitle(text) {
-  const title = document.createElement("div");
-  title.className = "section-title";
-  title.innerText = text;
-  content.appendChild(title);
-}
-
-function addLine(text, extraClass = "") {
-  const line = document.createElement("div");
-  line.className = `line ${extraClass}`;
-  line.innerText = text;
-  content.appendChild(line);
-}
-
-function addHTMLLine(html, extraClass = "") {
-  const line = document.createElement("div");
-  line.className = `line ${extraClass}`;
-  line.innerHTML = html;
-  content.appendChild(line);
-}
-
-function addHighlight(text, extraClass = "") {
-  const highlight = document.createElement("div");
-  highlight.className = `highlight ${extraClass}`;
-  highlight.innerText = text;
-  content.appendChild(highlight);
-}
-
-function addGrid(items) {
-
-  const grid = document.createElement("div");
-  grid.className = "grid";
-
-  items.forEach((item, index) => {
-
-    const box = document.createElement("div");
-    box.className = "grid-box";
-
-    if (items.length % 2 !== 0 && index === items.length - 1) {
-      box.classList.add("full-width");
-    }
-
-    box.innerHTML = `
-      <div class="icon-wrap"><i class="fa-solid ${item.icon}"></i></div>
-      <div class="text-wrap">${item.text}</div>
-    `;
-
-    grid.appendChild(box);
-  });
-
-  content.appendChild(grid);
+function goTo(id) {
+  currentIndex = contentData.findIndex(s => s.id === id);
+  renderSection();
 }
 
 nextBtn.onclick = () => {
