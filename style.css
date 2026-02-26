@@ -23,12 +23,12 @@ body {
   margin-bottom: 22px;
 }
 
-/* Title */
+/* Section Title */
 .section-title {
   font-size: 13px;
   letter-spacing: 2px;
   opacity: 0.6;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   text-transform: uppercase;
 }
 
@@ -41,8 +41,8 @@ body {
 
 .highlight {
   font-weight: 700;
-  font-size: 21px;
-  margin-top: 16px;
+  font-size: 22px;
+  margin-top: 18px;
 }
 
 .quote {
@@ -50,65 +50,64 @@ body {
   opacity: 0.85;
 }
 
-/* Grid Boxes */
+/* PERFECT 2x2 GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
-  margin-top: 25px;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 30px auto;
+  max-width: 750px;
 }
 
 .grid-box {
   border: 1px solid rgba(255,255,255,0.2);
-  padding: 14px 16px;
+  padding: 18px;
   border-radius: 8px;
   text-align: left;
   font-size: 15px;
   display: flex;
   gap: 12px;
-  align-items: center;
+  align-items: flex-start;
   background: rgba(255,255,255,0.03);
-  transition: all 0.25s ease;
+  transition: 0.25s ease;
 }
 
 .grid-box i {
   color: #ff2b2b;
-  font-size: 14px;
+  margin-top: 3px;
 }
 
 .grid-box:hover {
-  background: rgba(255, 43, 43, 0.08);
   border-color: #ff2b2b;
-  transform: translateY(-2px);
+  background: rgba(255,43,43,0.08);
+  transform: translateY(-3px);
 }
 
 /* Navigation */
 .nav {
-  margin-top: 45px;
+  margin-top: 40px;
   display: flex;
   justify-content: space-between;
 }
 
 button {
-  padding: 10px 22px;
+  padding: 10px 24px;
   background: transparent;
   border: 1px solid rgba(255,255,255,0.6);
   color: white;
   cursor: pointer;
   font-size: 14px;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
 
 button:hover {
   background: white;
   color: black;
-  border-color: white;
 }
 
 /* Contact */
 .contact {
   margin-top: 28px;
-  font-size: 16px;
 }
 
 .contact a {
@@ -122,17 +121,16 @@ button:hover {
 
 /* Fade */
 .fade {
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn 0.4s ease;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-  .line { font-size: 16px; }
-  .highlight { font-size: 19px; }
-  .grid { grid-template-columns: 1fr; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
