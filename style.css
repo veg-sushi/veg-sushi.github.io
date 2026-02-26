@@ -139,3 +139,25 @@ button:hover {
   color: #ff2b2b;
   text-decoration: none;
 }
+/* Yes / No choice slide */
+.choice-wrap {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.choice-wrap button {
+  padding: 10px 28px;
+  font-size: 13px;
+  border: 1px solid rgba(255,255,255,0.6);
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.choice-wrap button:hover {
+  background: white;
+  color: black;
+}
