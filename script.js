@@ -58,9 +58,9 @@ const contentData = [
     title: "BASIC BUT SELF AWARE",
     lines: [
       "I like dogs. Yes, I am basic.",
-      "Specifically the slightly derpy kind.",
+      { text: "Specifically the slightly derpy kind.", class: "micro" },
       "I notice emotional signals.",
-      "I value loyalty.",
+      { text: "I value loyalty.", class: "micro" },
       "Consistency builds trust."
     ]
   },
@@ -71,9 +71,9 @@ const contentData = [
     title: "I PLAN THINGS AGGRESSIVELY WELL",
     lines: [
       "I plan holidays like product launches.",
-      "Budget.",
-      "Experience map.",
-      "Contingencies.",
+      { text: "Budget.", class: "micro" },
+      { text: "Experience map.", class: "micro" },
+      { text: "Contingencies.", class: "micro" },
       "Execution is attractive.",
       "Chaos is overrated."
     ]
@@ -202,7 +202,8 @@ function renderSection() {
         line.className = `line ${lineData.class || ""}`;
         line.innerText = lineData.text;
         content.appendChild(line);
-      } else {
+      } 
+      else {
         if (index === section.lines.length - 1) {
           addHighlight(lineData);
         } else {
@@ -266,13 +267,20 @@ function addGrid(items) {
   const grid = document.createElement("div");
   grid.className = "grid";
 
-  items.forEach(item => {
+  items.forEach((item, index) => {
+
     const box = document.createElement("div");
     box.className = "grid-box";
+
+    if (items.length % 2 !== 0 && index === items.length - 1) {
+      box.classList.add("full-width");
+    }
+
     box.innerHTML = `
       <div class="icon-wrap"><i class="fa-solid ${item.icon}"></i></div>
       <div class="text-wrap">${item.text}</div>
     `;
+
     grid.appendChild(box);
   });
 
