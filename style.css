@@ -114,6 +114,27 @@ button:hover {
   margin-top: 18px;
 }
 
+.decision-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.decision-buttons button {
+  padding: 8px 22px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.6);
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s ease;
+}
+
+.decision-buttons button:hover {
+  background: white;
+  color: black;
+}
 .contact a {
   color: #ff2b2b;
   text-decoration: none;
