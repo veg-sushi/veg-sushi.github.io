@@ -1,145 +1,128 @@
 body {
   margin: 0;
+  background: #000;
+  color: #fff;
   font-family: 'Inter', sans-serif;
-  background: black;
-  color: white;
-  overflow-x: hidden;
-  transition: background 8s ease;
+  overflow: hidden;
 }
 
-/* Subtle ambient red-blue shift */
-body::before {
-  content: "";
-  position: fixed;
+.screen {
+  position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 30%, rgba(255,0,0,0.08), transparent 50%),
-              radial-gradient(circle at 70% 70%, rgba(0,140,255,0.08), transparent 50%);
-  z-index: -1;
-  animation: ambientMove 20s infinite alternate ease-in-out;
-}
-
-@keyframes ambientMove {
-  0% { transform: translate(0px, 0px); }
-  100% { transform: translate(40px, 40px); }
-}
-
-.full {
-  height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 60px;
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 90px;
+  font-weight: 900;
   text-align: center;
-  padding: 40px;
 }
 
-h1 {
-  font-size: 60px;
-  font-weight: 900;
-  margin: 20px 0;
-}
-
-h2 {
-  font-size: 32px;
+.enter-btn {
+  margin-top: 40px;
+  padding: 12px 28px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
   cursor: pointer;
-}
-
-.white { color: white; }
-
-.red-glow {
-  color: #ff2b2b;
-  text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
-}
-
-.blue-glow {
-  color: #3fa9ff;
-  text-shadow: 0 0 20px rgba(0, 140, 255, 0.7);
-}
-
-.mono {
-  font-size: 180px;
-  font-weight: 900;
-  text-shadow: 0 0 40px rgba(255, 0, 0, 0.4),
-               0 0 60px rgba(0, 140, 255, 0.4);
-}
-
-.smallcaps {
-  letter-spacing: 3px;
-}
-
-.portrait-words span {
-  display: block;
-  opacity: 0;
-  animation: fadeIn 1s forwards;
-}
-
-.portrait-words span:nth-child(1){ animation-delay: .3s; }
-.portrait-words span:nth-child(2){ animation-delay: .6s; }
-.portrait-words span:nth-child(3){ animation-delay: .9s; }
-.portrait-words span:nth-child(4){ animation-delay: 1.2s; }
-.portrait-words span:nth-child(5){ animation-delay: 1.5s; }
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-.interactive {
-  padding: 80px 20px;
-  max-width: 900px;
-  margin: auto;
-}
-
-.toggle {
-  margin-bottom: 60px;
-  transition: 0.3s ease;
-}
-
-.toggle h2:hover {
-  color: #3fa9ff;
-}
-
-.content {
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.6s ease;
-}
-
-.toggle.active .content {
-  max-height: 1000px;
-  margin-top: 20px;
-}
-
-.manifesto h1 {
-  font-size: 40px;
-  margin: 40px 0;
-}
-
-.cta .btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 30px;
-  background: white;
-  color: black;
-  text-decoration: none;
-  font-weight: 600;
+  font-family: 'Inter', sans-serif;
   transition: 0.3s;
 }
 
-.cta .btn:hover {
-  background: #ff2b2b;
-  color: white;
-  box-shadow: 0 0 20px rgba(255,0,0,0.7);
+.enter-btn:hover {
+  border-color: #ff2b2b;
+  color: #ff2b2b;
 }
 
-.cursor-glow {
-  position: fixed;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle,
-              rgba(255,0,0,0.2),
-              rgba(0,140,255,0.2),
-              transparent 70%);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: screen;
+.quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  text-align: center;
+  max-width: 800px;
+}
+
+.blue { color: #3fa9ff; }
+.red { color: #ff2b2b; }
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1100px;
+}
+
+.chapter-card {
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.chapter-card:hover {
+  border-color: #3fa9ff;
+}
+
+.chapter-card.large {
+  grid-column: span 2;
+}
+
+.chapter-card.wide {
+  grid-column: span 3;
+}
+
+.chapter-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+.chapter-view {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+.manifesto-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.cta-btn {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 12px 30px;
+  border: 1px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.cta-btn:hover {
+  border-color: #ff2b2b;
+  color: #ff2b2b;
+}
+
+.linkedin {
+  color: #3fa9ff;
+  text-decoration: none;
 }
