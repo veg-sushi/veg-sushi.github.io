@@ -1,10 +1,10 @@
 const contentData = [
 
   {
-    title: "WHY NOT ME",
+    id: "why",
     icon: "fa-question",
+    title: "WHY NOT ME",
     lines: [
-      "Why not me?",
       "Because I don’t have enough years of experience?",
       "Wasn’t it a great brand that once said,",
       { text: "“Don’t ask if your dreams are crazy. Ask if they’re crazy enough.”", class: "quote" },
@@ -14,8 +14,9 @@ const contentData = [
   },
 
   {
-    title: "THIS WASN’T SUPPOSED TO BE SENT HERE",
+    id: "redirect",
     icon: "fa-bullseye",
+    title: "THIS WASN’T SUPPOSED TO BE SENT HERE",
     lines: [
       "This was meant for three stripes.",
       "It chose motion instead.",
@@ -25,14 +26,16 @@ const contentData = [
   },
 
   {
-    title: "SO WHAT ABOUT ME?",
+    id: "about",
     icon: "fa-user",
+    title: "SO WHAT ABOUT ME?",
     type: "experience"
   },
 
   {
-    title: "MY TECH CAPABILITIES",
+    id: "tech",
     icon: "fa-mobile-screen",
+    title: "MY TECH CAPABILITIES",
     lines: [
       "Doomscrolling.",
       "UPI.",
@@ -47,8 +50,9 @@ const contentData = [
   },
 
   {
-    title: "I LOVE STORIES",
+    id: "stories",
     icon: "fa-book",
+    title: "I LOVE STORIES",
     lines: [
       "Books.",
       "Reddit at 2am.",
@@ -60,20 +64,22 @@ const contentData = [
   },
 
   {
-    title: "BASIC BUT SELF AWARE",
+    id: "dogs",
     icon: "fa-dog",
+    title: "BASIC BUT SELF AWARE",
     lines: [
       "I like dogs. Yes, I am basic.",
-      "Specifically the slightly derpy, tongue-out, no-thoughts-just-vibes kind.",
+      "Specifically the slightly derpy kind.",
       "I notice emotional signals.",
       "I value loyalty.",
-      "I believe consistency builds trust."
+      "Consistency builds trust."
     ]
   },
 
   {
-    title: "I PLAN THINGS AGGRESSIVELY WELL",
+    id: "planner",
     icon: "fa-calendar-check",
+    title: "I PLAN THINGS AGGRESSIVELY WELL",
     lines: [
       "I plan holidays like product launches.",
       "Budget.",
@@ -85,24 +91,46 @@ const contentData = [
   },
 
   {
-    title: "WHAT I BRING TO THE TABLE",
+    id: "table",
     icon: "fa-fire",
+    title: "WHAT I BRING TO THE TABLE",
+    type: "grid"
+  },
+
+  {
+    id: "manifesto1",
+    icon: "fa-brain",
+    title: "MANIFESTO",
     lines: [
-      "Marketplace thinking beyond listings.",
-      "Comfort owning revenue, not just reach.",
-      "Drop and launch sensitivity with commercial discipline.",
-      "Paid and platform integration instinct.",
-      "Ability to zoom out and zoom in.",
-      "Structured experimentation muscle.",
-      "Cross functional fluency.",
-      "Calm under commercial pressure.",
-      "Audacity."
+      "Don’t ask if I have enough years.",
+      "Ask if I think big enough."
     ]
   },
 
   {
-    title: "LET’S BUILD",
+    id: "manifesto2",
+    icon: "fa-rocket",
+    title: "MANIFESTO",
+    lines: [
+      "Don’t ask if it’s safe.",
+      "Ask if it scales."
+    ]
+  },
+
+  {
+    id: "manifesto3",
+    icon: "fa-arrows-rotate",
+    title: "MANIFESTO",
+    lines: [
+      "Don’t ask if I fit the mould.",
+      "Ask if the mould is outdated."
+    ]
+  },
+
+  {
+    id: "final",
     icon: "fa-flag-checkered",
+    title: "LET’S BUILD",
     lines: [
       "Let’s build something people line up for.",
       "The kind that moves inventory.",
@@ -119,6 +147,7 @@ const nextBtn = document.getElementById("nextBtn");
 const backBtn = document.getElementById("backBtn");
 
 function renderSection() {
+
   content.innerHTML = "";
   content.className = "fade";
 
@@ -165,7 +194,34 @@ function renderSection() {
     closing.innerText = "Years are a proxy. I optimise for signal.";
     content.appendChild(closing);
 
+  } else if (section.type === "grid") {
+
+    const grid = document.createElement("div");
+    grid.className = "grid";
+
+    const items = [
+      { icon: "fa-chart-line", text: "Marketplace thinking beyond listings." },
+      { icon: "fa-coins", text: "Comfort owning revenue, not just reach." },
+      { icon: "fa-bolt", text: "Drop and launch sensitivity with commercial discipline." },
+      { icon: "fa-layer-group", text: "Paid and platform integration instinct." },
+      { icon: "fa-magnifying-glass", text: "Ability to zoom out and zoom in." },
+      { icon: "fa-flask", text: "Structured experimentation muscle." },
+      { icon: "fa-people-group", text: "Cross functional fluency." },
+      { icon: "fa-shield-halved", text: "Calm under commercial pressure." },
+      { icon: "fa-star", text: "Audacity." }
+    ];
+
+    items.forEach(item => {
+      const box = document.createElement("div");
+      box.className = "grid-box";
+      box.innerHTML = `<i class="fa-solid ${item.icon}"></i> ${item.text}`;
+      grid.appendChild(box);
+    });
+
+    content.appendChild(grid);
+
   } else {
+
     section.lines.forEach((lineData, index) => {
       const line = document.createElement("div");
       line.className = "line";
