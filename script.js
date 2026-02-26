@@ -120,8 +120,6 @@ const contentData = [
     ]
   },
 
-  // 🔥 NEW SLIDE (after manifesto3)
-
   {
     id: "challenge",
     icon: "fa-bolt",
@@ -132,23 +130,20 @@ const contentData = [
       "",
       "If you’re looking for sharp,",
       "slightly unconventional,",
-      "commercially serious but culturally awake —",
+      "commercially serious but culturally awake -",
       "",
       "Why not me."
     ]
   },
-
-  // 🔥 DECISION SLIDE
 
   {
     id: "decision",
     type: "decision"
   },
 
-  // 🔥 YES OUTCOME
-
   {
     id: "yesOutcome",
+    icon: "fa-check",
     title: "Good choice.",
     lines: [
       "Well obviously.",
@@ -161,10 +156,9 @@ const contentData = [
     contact: true
   },
 
-  // 🔥 NO OUTCOME
-
   {
     id: "noOutcome",
+    icon: "fa-eye",
     title: "Fair.",
     lines: [
       "Safe is comfortable.",
@@ -189,7 +183,7 @@ function renderSection() {
   content.innerHTML = "";
   const section = contentData[currentIndex];
 
-  // 🔥 Decision logic
+  // Decision screen
   if (section.type === "decision") {
 
     const title = document.createElement("div");
@@ -213,8 +207,8 @@ function renderSection() {
 
     content.appendChild(wrapper);
 
-    nextBtn.style.visibility = "hidden";
     backBtn.style.visibility = "visible";
+    nextBtn.style.visibility = "hidden";
     return;
   }
 
@@ -237,17 +231,22 @@ function renderSection() {
   }
 
   else if (section.type === "tech") {
+
     addLine("Doomscrolling.", "tech-small");
     addLine("UPI.", "tech-small");
     addLine("Add to cart.", "tech-small");
     addLine("Checkout.", "tech-small");
+
     addLine("And yet here I am building this website from scratch.", "tech-pause");
     addLine("Why?");
+
     addHTMLLine("<strong>Just</strong> because I can <strong>do</strong> <strong>it</strong>", "tech-strong");
     addHTMLLine("Struggle, but still, <strong>do it</strong>", "tech-strong");
+
     addLine("Initiative > comfort zones.", "tech-reflect");
     addLine("Also, if we’re being honest", "tech-reflect");
     addLine("knowing how people browse, hesitate, compare, abandon and finally checkout", "tech-reflect");
+
     addHighlight("is half the job.", "tech-final");
   }
 
@@ -297,7 +296,7 @@ function renderSection() {
   }
 
   backBtn.style.visibility = currentIndex === 0 ? "hidden" : "visible";
-  nextBtn.style.visibility = currentIndex === contentData.length - 3 ? "hidden" : "visible";
+  nextBtn.style.visibility = currentIndex === contentData.length - 1 ? "hidden" : "visible";
 }
 
 function goTo(id) {
