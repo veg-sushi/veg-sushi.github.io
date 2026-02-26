@@ -53,17 +53,21 @@ const contentData = [
   },
 
   {
-    id: "dogs",
-    icon: "fa-dog",
-    title: "BASIC BUT SELF AWARE",
-    lines: [
-      "I like dogs. Yes, I am basic.",
-      { text: "Specifically the slightly derpy kind.", class: "micro" },
-      "I notice emotional signals.",
-      { text: "I value loyalty.", class: "micro" },
-      "Consistency builds trust."
-    ]
-  },
+  id: "dogs",
+  icon: "fa-dog",
+  title: "BASIC. BUT DISCERNING.",
+  lines: [
+    "I love dogs. Yes, I am basic like that.",
+    "They get excited about small wins.",
+    "They commit immediately.",
+    "They do not overthink.",
+    "Not big on pouncing felines",
+    "(If you know what I mean.)",
+    "Too much lurking.",
+    "Too much plotting.",
+    "I respect enthusiasm."
+  ]
+},
 
   {
     id: "planner",
