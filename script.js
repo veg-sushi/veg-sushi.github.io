@@ -1,5 +1,8 @@
-const content = [
-  { title: "Why Not Me",
+const contentData = [
+
+  {
+    title: "WHY NOT ME",
+    icon: "fa-question",
     lines: [
       "WHY NOT ME.",
       "Wasn’t it a great brand that once said,",
@@ -8,17 +11,25 @@ const content = [
       "And here we are."
     ]
   },
-  { title: "This Wasn’t Supposed To Be Sent Here",
+
+  {
+    title: "THIS WASN’T SUPPOSED TO BE SENT HERE",
+    icon: "fa-bullseye",
     lines: [
-      "This was supposed to be sent to adidas. It isn’t.",
+      "This was supposed to be sent to adidas.",
+      "It isn’t.",
       "Because I think Nike is cooler.",
       "If you’re going to take a swing, you might as well aim properly."
     ]
   },
-  { title: "So What About Me?",
+
+  {
+    title: "SO WHAT ABOUT ME?",
+    icon: "fa-user",
     lines: [
       "I don’t have the required years.",
-      "What I do have is pattern recognition.",
+      "What I do have is:",
+      "Pattern recognition.",
       "Marketplace instinct.",
       "Commercial accountability.",
       "Enough audacity to build a website instead of writing another cover letter.",
@@ -26,7 +37,10 @@ const content = [
       "I optimise for signal."
     ]
   },
-  { title: "My Tech Capabilities",
+
+  {
+    title: "MY TECH CAPABILITIES",
+    icon: "fa-mobile-screen",
     lines: [
       "Doomscrolling.",
       "UPI.",
@@ -36,7 +50,10 @@ const content = [
       "Understanding how people browse, hesitate, compare, abandon and checkout is half the job."
     ]
   },
-  { title: "I Love Stories",
+
+  {
+    title: "I LOVE STORIES",
+    icon: "fa-book",
     lines: [
       "Books.",
       "Reddit at 2am.",
@@ -46,7 +63,10 @@ const content = [
       "They signal."
     ]
   },
-  { title: "Basic But Self Aware",
+
+  {
+    title: "BASIC BUT SELF AWARE",
+    icon: "fa-dog",
     lines: [
       "I like dogs. Yes, I am basic.",
       "Specifically the slightly derpy, tongue-out, no-thoughts-just-vibes kind.",
@@ -56,7 +76,10 @@ const content = [
       "Also, they are just great."
     ]
   },
-  { title: "I Plan Things Aggressively Well",
+
+  {
+    title: "I PLAN THINGS AGGRESSIVELY WELL",
+    icon: "fa-calendar-check",
     lines: [
       "I plan holidays like product launches.",
       "Budget.",
@@ -67,94 +90,122 @@ const content = [
       "Chaos is overrated."
     ]
   },
-  { title: "What I Bring To The Table",
-    lines: [
-      "Marketplace thinking beyond listings.",
-      "Comfort owning revenue, not just reach.",
-      "Drop and launch sensitivity with commercial discipline.",
-      "Paid and platform integration instinct.",
-      "Ability to zoom out and zoom in.",
-      "Structured experimentation muscle.",
-      "Cross functional fluency.",
-      "Calm under commercial pressure.",
-      "Audacity.",
-      "I do not just launch campaigns.",
-      "I think about second order effects."
+
+  {
+    title: "WHAT I BRING TO THE TABLE",
+    icon: "fa-fire",
+    type: "grid",
+    items: [
+      { icon: "fa-chart-line", text: "Marketplace thinking beyond listings." },
+      { icon: "fa-coins", text: "Comfort owning revenue, not just reach." },
+      { icon: "fa-bolt", text: "Drop and launch sensitivity with commercial discipline." },
+      { icon: "fa-layer-group", text: "Paid and platform integration instinct." },
+      { icon: "fa-magnifying-glass", text: "Ability to zoom out and zoom in." },
+      { icon: "fa-flask", text: "Structured experimentation muscle." },
+      { icon: "fa-people-group", text: "Cross functional fluency." },
+      { icon: "fa-shield-halved", text: "Calm under commercial pressure." },
+      { icon: "fa-star", text: "Audacity." }
     ]
   },
-  { title: "Manifesto",
+
+  {
+    title: "MANIFESTO",
+    icon: "fa-bolt",
     lines: [
       "Don’t ask if I have enough years.",
       "Ask if I think big enough."
     ]
   },
-  { title: "Manifesto",
+
+  {
+    title: "MANIFESTO",
+    icon: "fa-bolt",
     lines: [
       "Don’t ask if it’s safe.",
       "Ask if it scales."
     ]
   },
-  { title: "Manifesto",
+
+  {
+    title: "MANIFESTO",
+    icon: "fa-bolt",
     lines: [
       "Don’t ask if I fit the mould.",
       "Ask if the mould is outdated."
     ]
   },
-  { title: "If You’re Still Reading",
+
+  {
+    title: "IF YOU’RE STILL READING",
+    icon: "fa-flag-checkered",
     lines: [
       "Let’s build something people line up for.",
       "The kind that moves inventory.",
       "And moves conversations."
     ]
   }
+
 ];
 
-let sectionIndex = 0;
-let lineIndex = 0;
-
-const stack = document.getElementById("stack");
+let currentIndex = 0;
+const content = document.getElementById("content");
 const nextBtn = document.getElementById("nextBtn");
 const backBtn = document.getElementById("backBtn");
 
-function render() {
-  stack.innerHTML = "";
+function renderSection() {
+  content.innerHTML = "";
+  const section = contentData[currentIndex];
 
-  const section = content[sectionIndex];
+  const icon = document.createElement("div");
+  icon.className = "top-icon";
+  icon.innerHTML = `<i class="fa-solid ${section.icon}"></i>`;
+  content.appendChild(icon);
 
   const title = document.createElement("div");
   title.className = "section-title";
   title.innerText = section.title;
-  stack.appendChild(title);
+  content.appendChild(title);
 
-  for (let i = 0; i <= lineIndex; i++) {
-    const line = document.createElement("div");
-    line.className = "line " + (i === lineIndex ? "current" : "previous");
-    line.innerText = section.lines[i];
-    stack.appendChild(line);
+  if (section.type === "grid") {
+    const grid = document.createElement("div");
+    grid.className = "grid";
+
+    section.items.forEach(item => {
+      const box = document.createElement("div");
+      box.className = "grid-box";
+      box.innerHTML = `<i class="fa-solid ${item.icon}"></i> ${item.text}`;
+      grid.appendChild(box);
+    });
+
+    content.appendChild(grid);
+  } else {
+    section.lines.forEach((text, index) => {
+      const line = document.createElement("div");
+      line.className = "line";
+      if (index === section.lines.length - 1) {
+        line.classList.add("highlight");
+      }
+      line.innerText = text;
+      content.appendChild(line);
+    });
   }
 
-  backBtn.style.visibility = (sectionIndex === 0 && lineIndex === 0) ? "hidden" : "visible";
+  backBtn.style.visibility = currentIndex === 0 ? "hidden" : "visible";
+  nextBtn.style.visibility = currentIndex === contentData.length - 1 ? "hidden" : "visible";
 }
 
 nextBtn.onclick = () => {
-  const section = content[sectionIndex];
-  if (lineIndex < section.lines.length - 1) {
-    lineIndex++;
-  } else if (sectionIndex < content.length - 1) {
-    sectionIndex++;
-    lineIndex = 0;
+  if (currentIndex < contentData.length - 1) {
+    currentIndex++;
+    renderSection();
   }
-  render();
 };
 
 backBtn.onclick = () => {
-  if (lineIndex > 0) {
-    lineIndex--;
-  } else if (sectionIndex > 0) {
-    sectionIndex--;
-    lineIndex = content[sectionIndex].lines.length - 1;
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderSection();
   }
-  render();
 };
 
-render();
+renderSection();
