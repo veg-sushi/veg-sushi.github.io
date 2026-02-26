@@ -5,159 +5,34 @@
   <title>Why Not Me</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="cursor-glow"></div>
+<div class="background-gradient"></div>
+<div class="grain"></div>
 
-<nav>
-  <div class="nav-left">WHY NOT ME</div>
-  <div class="nav-right">
-    <span onclick="goTo(0)">Home</span>
-    <span onclick="goTo(2)">Chapters</span>
-    <span onclick="goTo(9)">Manifesto</span>
-    <span onclick="goTo(10)">Contact</span>
+<div class="app">
+
+  <!-- Card Container -->
+  <div class="card">
+
+    <div class="content" id="content"></div>
+
+    <div class="buttons">
+      <button id="backBtn">Back</button>
+      <button id="nextBtn">Continue</button>
+    </div>
+
+    <div class="pixel-strip">
+      <div class="terrain"></div>
+      <div class="runner" id="runner"></div>
+      <div class="flag" id="flag"></div>
+    </div>
+
   </div>
-</nav>
-
-<div class="container">
-
-  <!-- 0 Intro -->
-  <section class="page active">
-    <h1 class="hero">WHY NOT ME.</h1>
-    <button onclick="nextPage()">Continue</button>
-  </section>
-
-  <!-- 1 Quote -->
-  <section class="page">
-    <div class="center">
-      <p class="quote">
-        Wasn’t it a great brand that once said<br>
-        “Don’t ask if your dreams are crazy. Ask if they’re crazy enough.”
-      </p>
-      <p class="blue">I did. And here we are.</p>
-    </div>
-    <button onclick="nextPage()">Continue</button>
-  </section>
-
-  <!-- 2 -->
-  <section class="page">
-    <div class="icon">🎯</div>
-    <h2>This wasn’t supposed to be sent here.</h2>
-    <p>This was supposed to be sent to adidas. It isn’t.</p>
-    <p>Because I think Nike is cooler.</p>
-    <p>If you’re going to take a swing, you might as well aim properly.</p>
-    <div class="nav-buttons">
-      <button onclick="prevPage()">Back</button>
-      <button onclick="nextPage()">On experience</button>
-    </div>
-  </section>
-
-  <!-- 3 -->
-  <section class="page">
-    <div class="icon">📊</div>
-    <h2>I don’t have the required years.</h2>
-    <p>Pattern recognition.</p>
-    <p>Marketplace instinct.</p>
-    <p>Commercial accountability.</p>
-    <p>Enough audacity to build a website instead of writing another cover letter.</p>
-    <p class="red">Years are a proxy. I optimise for signal.</p>
-    <div class="nav-buttons">
-      <button onclick="prevPage()">Back</button>
-      <button onclick="nextPage()">On tech</button>
-    </div>
-  </section>
-
-  <!-- 4 -->
-  <section class="page">
-    <div class="icon">🛒</div>
-    <h2>My tech experience includes doomscrolling, UPI payments, adding to cart and online shopping.</h2>
-    <p>And yet here I am building this.</p>
-    <p>Initiative beats comfort zones.</p>
-    <p>Understanding how people browse, hesitate, compare, abandon and finally checkout is half the job.</p>
-    <div class="nav-buttons">
-      <button onclick="prevPage()">Back</button>
-      <button onclick="nextPage()">On stories</button>
-    </div>
-  </section>
-
-  <!-- 5 -->
-  <section class="page">
-    <div class="icon">📖</div>
-    <h2>I am obsessed with stories.</h2>
-    <p>Books. Reddit threads at 2am. People explaining why they bought something they did not need.</p>
-    <p class="red">Marketplace is storytelling with checkout buttons.</p>
-    <p>The best products do not just sell. They signal.</p>
-    <div class="nav-buttons">
-      <button onclick="prevPage()">Back</button>
-      <button onclick="nextPage()">On dogs</button>
-    </div>
-  </section>
-
-  <!-- 6 -->
-  <section class="page">
-    <div class="icon">🐶</div>
-    <h2>I like dogs. Yes, I am basic.</h2>
-    <p>Specifically the slightly derpy, tongue-out, no-thoughts-just-vibes kind.</p>
-    <p>I notice emotional signals. I value loyalty. I believe consistency builds trust.</p>
-    <div class="nav-buttons">
-      <button onclick="prevPage()">Back</button>
-      <button onclick="nextPage()">On planning</button>
-    </div>
-  </section>
-
-  <!-- 7 -->
-  <section class="page">
-    <div class="icon">🗺️</div>
-    <h2>I plan holidays like product launches.</h2>
-    <p>Budget. Experience map. Contingencies. Backup airport snacks.</p>
-    <p class="blue">Execution is attractive.</p>
-    <p class="red">Chaos is overrated.</p>
-    <div class="nav-buttons">
-      <button onclick="prevPage()">Back</button>
-      <button onclick="nextPage()">On what I bring</button>
-    </div>
-  </section>
-
-  <!-- 8 -->
-  <section class="page">
-    <div class="icon">⚙️</div>
-    <h2>What I bring to the table.</h2>
-    <p>Marketplace thinking beyond listings.</p>
-    <p>Comfort owning revenue, not just reach.</p>
-    <p>Paid and platform integration instinct.</p>
-    <p>Ability to zoom out and zoom in.</p>
-    <p>Structured experimentation muscle.</p>
-    <p>Cross functional fluency.</p>
-    <p>Calm under commercial pressure.</p>
-    <p class="blue">And yes, audacity.</p>
-    <div class="nav-buttons">
-      <button onclick="prevPage()">Back</button>
-      <button onclick="nextPage()">Continue</button>
-    </div>
-  </section>
-
-  <!-- 9 Manifesto -->
-  <section class="page">
-    <h1>Don’t ask if I have enough years.<br><span class="blue">Ask if I think big enough.</span></h1>
-    <h1>Don’t ask if it’s safe.<br><span class="red">Ask if it scales.</span></h1>
-    <h1>Don’t ask if I fit the mould.<br><span class="blue">Ask if the mould is outdated.</span></h1>
-    <div class="nav-buttons">
-      <button onclick="prevPage()">Back</button>
-      <button onclick="nextPage()">Continue</button>
-    </div>
-  </section>
-
-  <!-- 10 CTA -->
-  <section class="page">
-    <h2>Let’s build something worth lining up for.</h2>
-    <a href="mailto:sharmayushi31@gmail.com" class="cta">sharmayushi31@gmail.com</a>
-    <a href="https://www.linkedin.com/in/ayushi-s/" target="_blank" class="linkedin">LinkedIn</a>
-    <button onclick="goTo(0)">Back to start</button>
-  </section>
 
 </div>
 
