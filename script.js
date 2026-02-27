@@ -148,7 +148,7 @@ const contentData = [
   },
 
   {
-    id: "So, what next then?",
+    id: "what next then",
     type: "choice"
   },
 
