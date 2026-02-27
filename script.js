@@ -201,27 +201,27 @@ function renderSection() {
 
   if (section.type === "choice") {
 
-    addHighlight("Your move.");
+  addHighlight("So, what next then?");
 
-    const wrap = document.createElement("div");
-    wrap.className = "choice-wrap";
+  const wrap = document.createElement("div");
+  wrap.className = "choice-wrap";
 
-    const yesBtn = document.createElement("button");
-    yesBtn.innerText = "Yes";
-    yesBtn.onclick = () => goTo("yes");
+  const yesBtn = document.createElement("button");
+  yesBtn.innerText = "Move forward";
+  yesBtn.onclick = () => goTo("move-forward");
 
-    const noBtn = document.createElement("button");
-    noBtn.innerText = "No";
-    noBtn.onclick = () => goTo("no");
+  const noBtn = document.createElement("button");
+  noBtn.innerText = "Not at this time";
+  noBtn.onclick = () => goTo("not-at-this-time");
 
-    wrap.appendChild(yesBtn);
-    wrap.appendChild(noBtn);
-    content.appendChild(wrap);
+  wrap.appendChild(yesBtn);
+  wrap.appendChild(noBtn);
+  content.appendChild(wrap);
 
-    nextBtn.style.visibility = "hidden";
-    backBtn.style.visibility = "visible";
-    return;
-  }
+  nextBtn.style.visibility = "hidden";
+  backBtn.style.visibility = "visible";
+  return;
+}
 
   addIcon(section.icon);
   addTitle(section.title);
@@ -310,7 +310,7 @@ function renderSection() {
     const btn = document.createElement("button");
     btn.innerText = "Reconsider";
     btn.style.marginTop = "20px";
-    btn.onclick = () => goTo("yes");
+    btn.onclick = () => goTo("move-forward");
     content.appendChild(btn);
   }
 
