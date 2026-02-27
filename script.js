@@ -148,12 +148,12 @@ const contentData = [
   },
 
   {
-    id: "choice",
+    id: "So, what next then?",
     type: "choice"
   },
 
   {
-    id: "yes",
+    id: "Move forward",
     icon: "fa-check",
     title: "Good decision.",
     lines: [
@@ -161,13 +161,13 @@ const contentData = [
       "",
       "Let’s build something",
       "that moves product",
-      "and moves culture."
+      "and shapes culture."
     ],
     contact: true
   },
 
   {
-    id: "no",
+    id: "not this time",
     icon: "fa-eye",
     title: "Fair.",
     lines: [
@@ -175,6 +175,14 @@ const contentData = [
       "",
       "This product will sell somewhere else.",
       "",
+      "Probably well."
+      "",
+      "And when you see it everywhere,"
+      "",
+      "you’ll remember this page."
+      "",
+      "No hard feelings."
+      ""
       "You can always reconsider."
     ],
     reconsider: true
